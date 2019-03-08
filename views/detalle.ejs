@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Detalle del Alumno</title>
+	</head>
+	<body>
+		<h1>Perfil de: <%= alumno.nombre %> <%= alumno.apellido %></h1>
+		<img src="<%= alumno.avatar %>" width="200">
+		<p>
+			<b>Curso:</b> <%= alumno.curso %> |
+			<b>Género:</b> <%= alumno.genero %> |
+			<b>Edad:</b> <%= alumno.edad %> |
+			<b>Pais:</b> <%= alumno.pais %> |
+			<b>Fecha de nacimiento:</b> <%= alumno.fecha_nacimiento ? alumno.fecha_nacimiento : 'No especificada'  %> |
+		</p>
+		<a href="mailto:<%= alumno.email %>"><%= alumno.email %></a><br>
+		<a href="/">[volver]</a>
+		<form action="/delete" method="post">
+			<input type="hidden" name="id" value=<%= alumno.id %>>
+			<button type="submit">Eliminar Alumno</button>
+		</form>
+	</body>
+</html>

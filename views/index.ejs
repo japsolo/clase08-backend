@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Alumnos P5</title>
+	</head>
+	<body>
+		<h2>Listado de alumnos</h2>
+		<ul>
+			<% for (var i = 0; i < alumnos.length; i++) { %>
+				<li>
+					<h4>
+						<%= alumnos[i].nombre %> <%= alumnos[i].apellido %>
+						<%
+							var nombreCompleto =  (alumnos[i].nombre + '-' + alumnos[i].apellido + '-' + alumnos[i].pais).toLowerCase();
+							var id = alumnos[i].id
+						%>
+						<a href="/detalle/<%= nombreCompleto + '?id=' + id %>">[ver detalles]</a>
+					</h4>
+				</li>
+			<% } %>
+		</ul>
+	</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Crear un Alumno</title>
+	</head>
+	<body>
+		<h2>Crear Alumno</h2>
+		<form action="/crear" method="post">
+			<div>
+				<label>Nombre:</label>
+				<input type="text" name="nombre">
+			</div>
+			<div>
+				<label>Apellido:</label>
+				<input type="text" name="apellido">
+			</div>
+			<div>
+				<label>Email:</label>
+				<input type="text" name="email">
+			</div>
+			<div>
+				<label>Año:</label>
+				<select name="anio">
+					<% for (var i = 1980; i <= 2019; i++) { %>
+						<option value="<%= i %>"> <%= i %> </option>
+					<% } %>
+				</select>
+				<label>Mes:</label>
+				<select name="mes">
+					<% for (var i = 1; i <= 12; i++) { %>
+						<option value="<%= i < 10 ? '0' + i : i %>"> <%= i < 10 ? '0' + i : i %> </option>
+					<% } %>
+				</select>
+				<label>Día:</label>
+				<select name="dia">
+					<% for (var i = 1; i <= 31; i++) { %>
+						<option value="<%= i < 10 ? '0' + i : i %>"> <%= i < 10 ? '0' + i : i %> </option>
+					<% } %>
+				</select>
+			</div>
+			<div>
+				<label>País:</label>
+				<select name="pais" id="pais">
+					<option value="">Elegí un país</option>
+				</select>
+			</div>
+			<div>
+				<label>Género:</label>
+				<select name="genero">
+					<option value="F">Femenino</option>
+					<option value="M">Masculino</option>
+					<option value="X">Otro</option>
+				</select>
+			</div>
+			<div>
+				<label>Curso:</label>
+				<select name="curso">
+					<option value="Frontend">Frontend</option>
+					<option value="Backend">Backend</option>
+					<option value="Bootcamp">Bootcamp</option>
+				</select>
+			</div>
+			<div>
+				<label>Edad:</label>
+				<input type="text" name="edad">
+			</div>
+			<div>
+				<label>Avatar:</label>
+				<input type="text" name="avatar" placeholder="Insertá una URL">
+			</div>
+			<button type="submit">Enviar</button>
+		</form>
+
+		<script>
+			let selectPaises = document.querySelector('#pais');
+			console.log(selectPaises);
+
+			fetch('https://restcountries.eu/rest/v2/all')
+				.then(response => response.json())
+				.then(paises => {
+					for (var pais of paises) {
+						selectPaises.innerHTML += '<option value=' + pais.name + '>' + pais.name + '</option>';
+					}
+				})
+				.catch(error => console.log(error));
+		</script>
+	</body>
+</html>
